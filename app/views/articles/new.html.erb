@@ -1,9 +1,20 @@
-<h1>New article</h1>
+<h1>Nuevo Artículo</h1>
 
-<%= render "form", article: @article %>
+<%= form_with(model: @article, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
 
-<br>
+  <div class="field">
+    <%= form.label :content %>
 
-<div>
-  <%= link_to "Back to articles", articles_path %>
+    <%= form.text_area :content %>
+  </div>
+
+<div class="actions">
+
+  <%= form.submit "Crear Artículo" , class: 'btn btn-success' %>
 </div>
+
+<% end %>

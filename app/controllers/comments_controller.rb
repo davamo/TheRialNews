@@ -2,6 +2,9 @@ class CommentsController < ApplicationController
   before_action :set_article
   before_action :require_login
 
+  def show
+  end
+
   def create
     @comment = @article.comments.build(comment_params)
     @comment.user = current_user

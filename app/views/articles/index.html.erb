@@ -6,9 +6,10 @@
   <% @articles.each do |article| %>
     <%= render article %>
     <p>
-      <%= link_to "Show this article", article %>
+      <%= link_to "Show this article", article, class: 'btn btn-success' %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New article", new_article_path %>
+<%= link_to "New article", new_article_path, class: 'btn btn-success'  %>
+

@@ -2,9 +2,26 @@
 
 <%= render @article %>
 
-<div>
-  <%= link_to "Edit this article", edit_article_path(@article) %> |
-  <%= link_to "Back to articles", articles_path %>
 
-  <%= button_to "Destroy this article", @article, method: :delete %>
+
+<h2>Comments</h2>
+<div class="mb-3">
+    <%= render partial: 'comments', locals: { post: @post } %>
+</div>
+<h2>Add a Comment</h2>
+<%= form_with(model: [@post, Comment.new], local: true) do |form| %>
+<div class="mb-3">
+    <%= form.text_area :content, placeholder: 'Write your comment...' %>
+</div>
+<div class="mb-3">
+    <%= form.submit 'Submit', class: 'btn btn-success' %>
+</div>
+<% end %>
+
+
+<div>
+  <%= link_to "Edit this article", edit_article_path(@article) , class: 'btn btn-success'  %> |
+  <%= link_to "Back to articles", articles_path , class: 'btn btn-success' %>
+
+  <%= button_to "Destroy this article", @article, method: :delete , class: 'btn btn-success'  %>
 </div>
