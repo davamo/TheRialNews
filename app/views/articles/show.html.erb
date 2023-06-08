@@ -2,26 +2,30 @@
 
 <%= render @article %>
 
-
-
 <h2>Comments</h2>
 <div class="mb-3">
-    <%= render partial: 'comments', locals: { post: @post } %>
+    <%= render partial: 'comments', locals: { comment: @comment } %>
 </div>
 <h2>Add a Comment</h2>
-<%= form_with(model: [@post, Comment.new], local: true) do |form| %>
+<%= form_with(model: [@comment, Comment.new], url: comments_path, local: true) do |form| %>
+
 <div class="mb-3">
     <%= form.text_area :content, placeholder: 'Write your comment...' %>
 </div>
 <div class="mb-3">
-    <%= form.submit 'Submit', class: 'btn btn-success' %>
+    <%= form.submit 'Submit', class: 'btn btn-primary active' %>
 </div>
 <% end %>
 
+<div class="mb-3">
+    <%= link_to "Edit this article", edit_article_path(@article) , class: 'btn btn-success'  %> |
+</div>
 
-<div>
-  <%= link_to "Edit this article", edit_article_path(@article) , class: 'btn btn-success'  %> |
-  <%= link_to "Back to articles", articles_path , class: 'btn btn-success' %>
+<div class="mb-3">
+    <%= link_to "Back to articles", articles_path , class: 'btn btn-success' %>
+</div>
 
-  <%= button_to "Destroy this article", @article, method: :delete , class: 'btn btn-success'  %>
+
+<div class="mb-3">
+    <%= button_to "Destroy this article", @article, method: :delete , class: 'btn btn-success'  %>
 </div>

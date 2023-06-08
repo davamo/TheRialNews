@@ -6,13 +6,14 @@ class CommentsController < ApplicationController
   end
 
   def create
+    @article = Post.find(params[:article_id])
     @comment = @article.comments.build(comment_params)
     @comment.user = current_user
 
     if @comment.save
       redirect_to @article, notice: 'Comment was successfully created.'
     else
-      redirect_to @article, alert: 'Error creating comment.'
+      render 'articles/show'
     end
   end
 
