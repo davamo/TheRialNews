@@ -7,14 +7,14 @@
     <%= render partial: 'comments', locals: { comment: @comment } %>
 </div>
 <h2>Add a Comment</h2>
-<%= form_with(model: [@comment, Comment.new], url: comments_path, local: true) do |form| %>
 
-<div class="mb-3">
-    <%= form.text_area :content, placeholder: 'Write your comment...' %>
-</div>
-<div class="mb-3">
-    <%= form.submit 'Submit', class: 'btn btn-primary active' %>
-</div>
+<%= form_with(model: [@article, Comment.new], local: true) do |form| %>
+    <div class="mb-3">
+        <%= form.text_area :content, placeholder: 'Write your comment...' %>
+    </div>
+    <div class="mb-3">
+        <%= form.submit 'Save', class: 'btn btn-primary active' %>
+    </div>
 <% end %>
 
 <div class="mb-3">
@@ -24,7 +24,6 @@
 <div class="mb-3">
     <%= link_to "Back to articles", articles_path , class: 'btn btn-success' %>
 </div>
-
 
 <div class="mb-3">
     <%= button_to "Destroy this article", @article, method: :delete , class: 'btn btn-success'  %>

@@ -6,5 +6,8 @@ Rails.application.routes.draw do
   resources :articles do
     resources :comments, only: [:create]
   end
+
+  resources :articles, except: [:index]
   root "home#index"
+  get '/articles', to: 'articles#index', as: 'user_root'
 end

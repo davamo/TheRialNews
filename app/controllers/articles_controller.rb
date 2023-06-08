@@ -1,4 +1,8 @@
 class ArticlesController < ApplicationController
+  #before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, only: [:new, :create]
+  before_action :check_admin, only: [:new, :create]
+
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :require_login, except: [:index, :show]
 
@@ -43,6 +47,15 @@ class ArticlesController < ApplicationController
   end
 
   private
+
+
+  def check_admin
+    unless current_user.admin?
+      flash[:alert] = "Solo los administradores pueden crear nuevos artículos."
+      redirect_to root_path
+    end
+  end
+
 
   def set_article
     @article = Article.find(params[:id])
