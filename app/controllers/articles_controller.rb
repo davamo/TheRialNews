@@ -1,10 +1,7 @@
 class ArticlesController < ApplicationController
-  #before_action :authenticate_user!, except: [:index, :show]
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!
   before_action :check_admin, only: [:new, :create]
-
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_action :require_login, except: [:index, :show]
 
   def index
     @articles = Article.all

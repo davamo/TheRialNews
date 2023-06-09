@@ -2,6 +2,17 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: 'your-domain.com', # Cambia "your-domain.com" al dominio de tu aplicación
+    user_name: 'your-email@gmail.com', # Cambia "your-email@gmail.com" a tu dirección de correo electrónico de Gmail
+    password: 'your-password', # Cambia "your-password" a tu contraseña de Gmail
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time
